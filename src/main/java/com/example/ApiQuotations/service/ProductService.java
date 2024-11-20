@@ -1,23 +1,27 @@
-package com.example.ApiQuotations.service;
+    package com.example.ApiQuotations.service;
 
-import com.example.ApiQuotations.model.Product;
-import com.example.ApiQuotations.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+    import com.example.ApiQuotations.model.Product;
+    import com.example.ApiQuotations.repository.ProductRepository;
+    import lombok.RequiredArgsConstructor;
+    import org.springframework.stereotype.Service;
 
-import java.util.List;
+    import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class ProductService {
+    @Service
+    @RequiredArgsConstructor
+    public class ProductService {
 
-    private final ProductRepository productRepository;
+        private final ProductRepository productRepository;
 
-    public Product saveProduct(Product product) {
-        return productRepository.save(product);
+        public Product saveProduct(Product product) {
+            return productRepository.save(product);
+        }
+
+        public List<Product> getAllProducts() {
+            return productRepository.findAll();
+        }
+
+         public Product getProductById(Long productId) {
+         return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
     }
-
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
     }
-}
