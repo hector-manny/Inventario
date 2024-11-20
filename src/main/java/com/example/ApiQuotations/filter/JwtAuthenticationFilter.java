@@ -1,6 +1,8 @@
 package com.example.ApiQuotations.filter;
 
 import com.example.ApiQuotations.util.JwtUtils;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -15,7 +17,10 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    JwtUtils jwtUtils;
+
+    @Autowired
+    private JwtUtils jwtUtils;
+ 
     @Override
     protected void doFilterInternal(@SuppressWarnings("null") HttpServletRequest request, @SuppressWarnings("null") HttpServletResponse response, @SuppressWarnings("null") FilterChain chain)
             throws ServletException, IOException {
