@@ -7,5 +7,4 @@ public class QuotationRequest {
     private Integer categoryId;
     private BigDecimal productCost;
 
-    // Getters and Setters
 }
