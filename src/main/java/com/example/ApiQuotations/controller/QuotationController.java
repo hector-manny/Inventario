@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/quotes")
 @RequiredArgsConstructor
 public class QuotationController {
-    private final QuotationService quotationService;
+    private QuotationService quotationService;
     
 
     @GetMapping

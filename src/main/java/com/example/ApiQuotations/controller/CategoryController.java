@@ -1,7 +1,6 @@
 package com.example.ApiQuotations.controller;
 
 import java.util.List;
-import java.util.Locale.Category;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/product-types")
 @RequiredArgsConstructor
 public class CategoryController {
-    private final CategoryService categoryService;
+    private CategoryService categoryService;
     
     @GetMapping
     public ResponseEntity<List<com.example.ApiQuotations.model.Category>> getAllCategories() {

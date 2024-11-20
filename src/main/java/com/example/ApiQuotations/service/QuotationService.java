@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class QuotationService {
-    private final QuotationRepository quotationRepository;
+    private QuotationRepository quotationRepository;
     
     public List<Quotation> getAllQuotations() {
         return quotationRepository.findAll();
