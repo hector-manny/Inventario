@@ -3,7 +3,7 @@ package com.example.ApiQuotations.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import org.apache.catalina.User;
+import com.example.ApiQuotations.model.Users;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,7 +37,7 @@ public class Product {
     
     @ManyToOne
     @JoinColumn(name = "created_by")
-    private User createdBy;
+    private Users createdBy;
     
     @Column(name = "created_at")
     private LocalDateTime createdAt;

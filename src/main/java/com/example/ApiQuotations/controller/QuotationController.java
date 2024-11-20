@@ -1,5 +1,7 @@
 package com.example.ApiQuotations.controller;
 
+import java.util.List;
+
 import org.hibernate.query.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ApiQuotations.dto.QuotationRequestDTO;
+import com.example.ApiQuotations.service.QuotationService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,23 +23,14 @@ import lombok.RequiredArgsConstructor;
 public class QuotationController {
     private final QuotationService quotationService;
     
-    @PostMapping
-    public ResponseEntity<QuotationResponse> createQuotation(@RequestBody QuotationRequestDTO request) {
-        return new ResponseEntity<>(quotationService.createQuotation(request), HttpStatus.CREATED);
-    }
-    
+
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Page<QuotationResponse>> getAllQuotations(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "createdAt") String sortBy,
-            @RequestParam(defaultValue = "desc") String sortDir) {
-        return ResponseEntity.ok(quotationService.getAllQuotations(page, size, sortBy, sortDir));
+    public ResponseEntity<List<com.example.ApiQuotations.model.Quotation>> getAllQuotations() {
+        return ResponseEntity.ok(quotationService.getAllQuotations());
     }
-    
-    @GetMapping("/{id}")
-    public ResponseEntity<QuotationResponse> getQuotationById(@PathVariable Long id) {
-        return ResponseEntity.ok(quotationService.getQuotationById(id));
+
+    @PostMapping
+    public ResponseEntity<com.example.ApiQuotations.model.Quotation> createQuotation(@RequestBody com.example.ApiQuotations.model.Quotation request) {
+        return new ResponseEntity<>(quotationService.saveQuotation(request), HttpStatus.CREATED);
     }
 }

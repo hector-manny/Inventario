@@ -1,11 +1,11 @@
 package com.example.ApiQuotations.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.example.ApiQuotations.dto.CategoryDTO;
+import com.example.ApiQuotations.model.Category;
+import com.example.ApiQuotations.repository.CategoryRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,16 +13,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CategoryService {
     private final CategoryRepository categoryRepository;
-    private final CategoryMapper categoryMapper;
     
-    public List<CategoryDTO> getAllCategories() {
-        return categoryRepository.findAll().stream()
-                .map(categoryMapper::toDTO)
-                .collect(Collectors.toList());
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
     }
-    
-    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
-        Category category = categoryMapper.toEntity(categoryDTO);
-        return categoryMapper.toDTO(categoryRepository.save(category));
+
+    public Category saveCategory(Category categoryDTO) {
+        return categoryRepository.save(categoryDTO);
     }
 }
