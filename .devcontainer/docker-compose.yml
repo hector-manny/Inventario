@@ -20,10 +20,10 @@ services:
       POSTGRES_DB: inventario
       POSTGRES_HOSTNAME: postgresdb
 
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: inventario
-      MYSQL_HOSTNAME: mysqldb
+      # MYSQL_USER: admin
+      # MYSQL_PASSWORD: root
+      # MYSQL_DATABASE: inventario
+      # MYSQL_HOSTNAME: mysqldb
 
     volumes:
       - ../..:/workspaces:cached
@@ -49,19 +49,19 @@ services:
     networks:
       - app-network
 
-  mysql:
-    container_name: mysqldb
-    image: mysql:8.0
-    restart: unless-stopped
-    volumes:
-      - mysql-data:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: inventario
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: root
+  # mysql:
+  #   container_name: mysqldb
+  #   image: mysql:8.0
+  #   restart: unless-stopped
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: inventario
+  #     MYSQL_USER: admin
+  #     MYSQL_PASSWORD: root
 
-    networks:
-      - app-network
+  #   networks:
+  #     - app-network
